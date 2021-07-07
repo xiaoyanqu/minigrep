@@ -14,7 +14,7 @@ fn main() {
     // let config = parse_config(&args);
 
     let config = Config::new(&args).unwrap_or_else(|err| {
-        println!("Problem detected while parsing arguments: {}", err);
+        eprintln!("Problem detected while parsing arguments: {}", err);
         process::exit(1);
     });
 
@@ -22,7 +22,7 @@ fn main() {
     println!("In file: `{}`", config.filename);
 
     if let Err(e) = minigrep::run(config) {
-        println!("Application error: {}", e);
+        eprintln!("Application error: {}", e);
         process::exit(1);
     } else {
         // run(config) returns `()` if it was `Ok(())`, hence here are we.
